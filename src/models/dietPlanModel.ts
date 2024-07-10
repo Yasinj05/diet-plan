@@ -48,13 +48,13 @@ const DayPlanSchema: Schema = new Schema({
   day: {
     type: String,
     enum: [
-      "Saturday",
-      "Sunday",
       "Monday",
       "Tuesday",
       "Wednesday",
       "Thursday",
       "Friday",
+      "Saturday",
+      "Sunday",
     ],
     required: true,
   },
