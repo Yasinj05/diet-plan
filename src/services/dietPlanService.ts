@@ -20,8 +20,13 @@ const updatePlan = async (
   });
 };
 
+const deletePlan = async (userId: string, week: number, year: number) => {
+  return await DietPlan.findOneAndDelete({ userId, week, year });
+};
+
 export default {
   getWeeklyPlan,
   createPlan,
   updatePlan,
+  deletePlan,
 };

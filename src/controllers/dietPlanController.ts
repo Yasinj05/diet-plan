@@ -59,3 +59,26 @@ export const updateDietPlan = async (req: Request, res: Response) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const deleteDietPlan = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  const { userId, week, year } = req.params;
+
+  try {
+    const dietPlan = await dietPlanService.deletePlan(
+      userId,
+      parseInt(week),
+      parseInt(year)
+    );
+    if (!dietPlan) {
+      res.status(404).json({ message: "Diet plan not found" });
+      return;
+    }
+    res.json({ message: "Diet plan deleted successfully" });
+  } catch (err) {
+    const error = err as any;
+    res.status(500).json({ message: error.message });
+  }
+};
