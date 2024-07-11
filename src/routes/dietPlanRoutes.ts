@@ -3,6 +3,7 @@ import {
   createDietPlan,
   deleteDietPlan,
   getDietPlan,
+  getNextWeekDietPlan,
   getPreviousWeekDietPlan,
   updateDietPlan,
 } from "../controllers/dietPlanController";
@@ -14,5 +15,6 @@ router.post("/", createDietPlan);
 router.put("/:userId/week/:week/year/:year", updateDietPlan);
 router.delete("/:userId/week/:week/year/:year", deleteDietPlan);
 router.get("/:userId/week/:week/year/:year/previous", getPreviousWeekDietPlan);
+router.get("/:userId/week/:week/year/:year/next", getNextWeekDietPlan);
 
 export default router;

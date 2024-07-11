@@ -34,10 +34,21 @@ const getPreviousWeek = (
   return { week: week - 1, year };
 };
 
+const getNextWeek = (
+  week: number,
+  year: number
+): { week: number; year: number } => {
+  if (week === 52) {
+    return { week: 1, year: year + 1 };
+  }
+  return { week: week + 1, year };
+};
+
 export default {
   getWeeklyPlan,
   createPlan,
   updatePlan,
   deletePlan,
   getPreviousWeek,
+  getNextWeek,
 };
