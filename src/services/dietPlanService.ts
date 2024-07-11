@@ -24,9 +24,20 @@ const deletePlan = async (userId: string, week: number, year: number) => {
   return await DietPlan.findOneAndDelete({ userId, week, year });
 };
 
+const getPreviousWeek = (
+  week: number,
+  year: number
+): { week: number; year: number } => {
+  if (week === 1) {
+    return { week: 52, year: year - 1 };
+  }
+  return { week: week - 1, year };
+};
+
 export default {
   getWeeklyPlan,
   createPlan,
   updatePlan,
   deletePlan,
+  getPreviousWeek,
 };
