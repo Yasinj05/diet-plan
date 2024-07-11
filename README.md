@@ -33,26 +33,31 @@ This project is a diet plan management system built using MongoDB, Express.js, a
 
 ```
    git clone https://github.com/Yasinj05/diet-plan.git
+```
+
+2. **Navigate to the project directory:**
+
+```
    cd diet-plan
 ```
 
-2. **Install dependencies:**
+3. **Install dependencies:**
 
 ```
-npm install
+    npm install
 ```
 
-3. **Create a .env file in the root directory and add your MongoDB connection string:**
+4. **Create a .env file in the root directory and add your MongoDB connection string:**
 
 ```
-MONGODB_URI=mongodb://localhost:27017/dietPlanDB
-PORT=your-port
+    MONGODB_URI=mongodb://localhost:27017/dietPlanDB
+    PORT=your-port
 ```
 
-4. **Start the server:**
+5. **Start the server:**
 
 ```
-npm run start
+    npm run start
 ```
 
 ## API Documentation 🧪
@@ -61,27 +66,27 @@ The API is documented using Swagger. Once the server is running, you can access 
 
 ## API Endpoints 🖇️
 
-### Create Diet Plan
+#### Create Diet Plan
 
 - URL: POST `/api/diet-plans`
 
-### Retrieve Diet Plan
+#### Retrieve Diet Plan
 
 - URL: GET `/api/diet-plans/:userId/week/:week/year/:year`
 
-### Update Diet Plan
+#### Update Diet Plan
 
 - URL: PUT `/api/diet-plans/:userId/week/:week/year/:year`
 
-### Delete Diet Plan
+#### Delete Diet Plan
 
 - URL: DELETE `/api/diet-plans/:userId/week/:week/year/:year`
 
-### Get the previous week's diet plan
+#### Get the previous week's diet plan
 
 - URL: GET `/api/diet-plans/:userId/week/:week/year/:year/previous`
 
-### Get the next week's diet plan
+#### Get the next week's diet plan
 
 - URL: GET `/api/diet-plans/:userId/week/:week/year/:year/next`
 
