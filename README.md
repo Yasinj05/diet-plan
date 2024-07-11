@@ -2,7 +2,7 @@
 
 This project is a diet plan management system built using MongoDB, Express.js, and TypeScript. It allows users to create, view, update, and delete their weekly diet plans. The API also includes functionality to retrieve the previous and next week's diet plans.
 
-## Features
+## Features 💡
 
 - **Create Diet Plan**: Allows users to create a new diet plan for a specified week and year.
 - **Retrieve Diet Plan**: Fetches a user's diet plan for a given week and year.
@@ -27,7 +27,7 @@ This project is a diet plan management system built using MongoDB, Express.js, a
 - [Node.js](https://nodejs.org/)
 - [MongoDB](https://www.mongodb.com/)
 
-### Installation
+### Installation 📥
 
 1. **Clone the repository:**
 
