@@ -9,7 +9,19 @@ const createPlan = async (planData: any) => {
   return await dietPlan.save();
 };
 
+const updatePlan = async (
+  userId: string,
+  week: number,
+  year: number,
+  updatedPlan: any
+) => {
+  return await DietPlan.findOneAndUpdate({ userId, week, year }, updatedPlan, {
+    new: true,
+  });
+};
+
 export default {
   getWeeklyPlan,
   createPlan,
+  updatePlan,
 };

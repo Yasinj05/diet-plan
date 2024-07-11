@@ -1,10 +1,7 @@
 import { Request, Response } from "express";
 import dietPlanService from "../services/dietPlanService";
 
-export const getDietPlan = async (
-  req: Request,
-  res: Response
-): Promise<void> => {
+export const getDietPlan = async (req: Request, res: Response) => {
   const { userId, week, year } = req.params;
 
   try {
@@ -24,10 +21,7 @@ export const getDietPlan = async (
   }
 };
 
-export const createDietPlan = async (
-  req: Request,
-  res: Response
-): Promise<void> => {
+export const createDietPlan = async (req: Request, res: Response) => {
   const { userId, week, year, dailyPlans } = req.body;
 
   try {
@@ -38,6 +32,28 @@ export const createDietPlan = async (
       dailyPlans,
     });
     res.status(201).json(newDietPlan);
+  } catch (err) {
+    const error = err as any;
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const updateDietPlan = async (req: Request, res: Response) => {
+  const { userId, week, year } = req.params;
+  const updatedPlan = req.body;
+
+  try {
+    const dietPlan = await dietPlanService.updatePlan(
+      userId,
+      parseInt(week),
+      parseInt(year),
+      updatedPlan
+    );
+    if (!dietPlan) {
+      res.status(404).json({ message: "Diet plan not found" });
+      return;
+    }
+    res.json(dietPlan);
   } catch (err) {
     const error = err as any;
     res.status(500).json({ message: error.message });
