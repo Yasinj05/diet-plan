@@ -31,34 +31,34 @@ This project is a diet plan management system built using MongoDB, Express.js, a
 
 1. **Clone the repository:**
 
-```
+   ```
    git clone https://github.com/Yasinj05/diet-plan.git
-```
+   ```
 
 2. **Navigate to the project directory:**
 
-```
+   ```
    cd diet-plan
-```
+   ```
 
 3. **Install dependencies:**
 
-```
-    npm install
-```
+   ```
+   npm install
+   ```
 
 4. **Create a .env file in the root directory and add your MongoDB connection string:**
 
-```
-    MONGODB_URI=mongodb://localhost:27017/dietPlanDB
-    PORT=your-port
-```
+   ```
+   MONGODB_URI=mongodb://localhost:27017/dietPlanDB
+   PORT=your-port
+   ```
 
 5. **Start the server:**
 
-```
-    npm run start
-```
+   ```
+   npm run start
+   ```
 
 ## API Documentation 🧪
 
