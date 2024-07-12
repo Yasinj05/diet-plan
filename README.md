@@ -1,16 +1,15 @@
 # Diet Plan Management System 📝
 
-This project is a diet plan management system built using MongoDB, Express.js, and TypeScript. It allows users to create, view, update, and delete their weekly diet plans. The API also includes functionality to retrieve the previous and next week's diet plans.
+This project implements a RESTful API for managing diet plans using Node.js, Express.js, MongoDB, and TypeScript.
 
 ## Features 💡
 
-- **Create Diet Plan**: Allows users to create a new diet plan for a specified week and year.
-- **Retrieve Diet Plan**: Fetches a user's diet plan for a given week and year.
-- **Update Diet Plan**: Updates an existing diet plan for a specified week and year.
-- **Delete Diet Plan**: Deletes an existing diet plan for a specified week and year.
-- Retrieve the previous week's diet plan
-- Retrieve the next week's diet plan
-- Swagger documentation for API endpoints
+- **Create** a new diet plan for a user.
+- **Retrieve** diet plans for specific users, weeks, and years.
+- **Update** existing diet plans.
+- **Delete** diet plans.
+- **Navigate** between previous and next week's diet plans.
+- **Swagger** documentation for API endpoints
 
 ## Technologies Used
 
@@ -19,6 +18,7 @@ This project is a diet plan management system built using MongoDB, Express.js, a
 - TypeScript
 - MongoDB with Mongoose
 - Swagger for API documentation
+- Jest for unit testing
 
 ## Getting Started 🚀
 
@@ -59,6 +59,14 @@ This project is a diet plan management system built using MongoDB, Express.js, a
    ```
    npm run start
    ```
+
+## Unit Tests
+
+Unit tests are implemented using Jest and Supertest to ensure the reliability of the API endpoints and controller functions. To run the tests, use the following command:
+
+    ```
+    npm test
+    ```
 
 ## API Documentation 🧪
 
