@@ -24,6 +24,10 @@ export const getDietPlan = async (req: Request, res: Response) => {
 export const createDietPlan = async (req: Request, res: Response) => {
   const { userId, week, year, dailyPlans } = req.body;
 
+  if (!userId || !week || !year || !dailyPlans) {
+    return res.status(400).json({ message: "Missing required fields" });
+  }
+
   try {
     const newDietPlan = await dietPlanService.createPlan({
       userId,
