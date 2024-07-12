@@ -64,9 +64,7 @@ This project implements a RESTful API for managing diet plans using Node.js, Exp
 
 Unit tests are implemented using Jest and Supertest to ensure the reliability of the API endpoints and controller functions. To run the tests, use the following command:
 
-    ```
     npm test
-    ```
 
 ## API Documentation 🧪
 
