@@ -1,13 +1,15 @@
 import request from "supertest";
-import app from "../../src/app";
-import { connectDB, disconnectDB } from "../../src/config/db";
+import mongoose from "mongoose";
+import server from "../../src/app";
+import connectDB from "../../src/config/db";
 
 beforeAll(async () => {
   await connectDB();
 });
 
 afterAll(async () => {
-  await disconnectDB();
+  await mongoose.disconnect();
+  server.close();
 });
 
 describe("DietPlan Controller", () => {
@@ -55,7 +57,7 @@ describe("DietPlan Controller", () => {
         ],
       };
 
-      const response = await request(app)
+      const response = await request(server)
         .post("/api/diet-plans")
         .send(newDietPlan)
         .expect(201);
@@ -90,7 +92,7 @@ describe("DietPlan Controller", () => {
         ],
       };
 
-      await request(app)
+      await request(server)
         .post("/api/diet-plans")
         .send(invalidDietPlan)
         .expect(400);
@@ -104,7 +106,7 @@ describe("GET /api/diet-plans/:userId/week/:week/year/:year", () => {
     const week = 1;
     const year = 2024;
 
-    const response = await request(app)
+    const response = await request(server)
       .get(`/api/diet-plans/${userId}/week/${week}/year/${year}`)
       .expect(200);
 
@@ -119,8 +121,91 @@ describe("GET /api/diet-plans/:userId/week/:week/year/:year", () => {
     const week = 1;
     const year = 2024;
 
-    await request(app)
+    await request(server)
       .get(`/api/diet-plans/${userId}/week/${week}/year/${year}`)
+      .expect(404);
+  });
+});
+
+describe("PUT /api/diet-plans/:userId/week/:week/year/:year", () => {
+  it("should update the diet plan and return 200 status", async () => {
+    const userId = "12345";
+    const week = 1;
+    const year = 2024;
+    const updatedPlan = {
+      dailyPlans: [
+        {
+          day: "Monday",
+          meals: [
+            {
+              name: "Updated Oatmeal",
+              type: "breakfast",
+              calories: 320,
+              proteins: 12,
+              carbohydrates: 55,
+              fats: 6,
+            },
+          ],
+        },
+      ],
+    };
+
+    const response = await request(server)
+      .put(`/api/diet-plans/${userId}/week/${week}/year/${year}`)
+      .send(updatedPlan)
+      .expect(200);
+
+    expect(response.body).toHaveProperty("_id");
+    expect(response.body.dailyPlans[0].meals[0].name).toBe("Updated Oatmeal");
+  });
+
+  it("should return 404 status when diet plan to update is not found", async () => {
+    const userId = "nonexistentUserId";
+    const week = 1;
+    const year = 2024;
+    const updatedPlan = {
+      dailyPlans: [
+        {
+          day: "Monday",
+          meals: [
+            {
+              name: "Updated Oatmeal",
+              type: "breakfast",
+              calories: 320,
+              proteins: 12,
+              carbohydrates: 55,
+              fats: 6,
+            },
+          ],
+        },
+      ],
+    };
+
+    await request(server)
+      .put(`/api/diet-plans/${userId}/week/${week}/year/${year}`)
+      .send(updatedPlan)
+      .expect(404);
+  });
+});
+
+describe("DELETE /api/diet-plans/:userId/week/:week/year/:year", () => {
+  it("should delete the diet plan and return 200 status", async () => {
+    const userId = "12345";
+    const week = 1;
+    const year = 2024;
+
+    await request(server)
+      .delete(`/api/diet-plans/${userId}/week/${week}/year/${year}`)
+      .expect(200);
+  });
+
+  it("should return 404 status when diet plan to delete is not found", async () => {
+    const userId = "nonexistentUserId";
+    const week = 1;
+    const year = 2024;
+
+    await request(server)
+      .delete(`/api/diet-plans/${userId}/week/${week}/year/${year}`)
       .expect(404);
   });
 });
