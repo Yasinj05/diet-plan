@@ -1,6 +1,5 @@
-import express, { Application } from "express";
+import express from "express";
 import connectDB from "./config/db";
-import bodyParser from "body-parser";
 import dietPlanRoutes from "./routes/dietPlanRoutes";
 import { setupSwagger } from "./config/swagger";
 import dotenv from "dotenv";
@@ -13,7 +12,6 @@ connectDB();
 
 // Middleware
 app.use(express.json());
-app.use(bodyParser.json());
 
 // Routes
 app.use("/api/diet-plans", dietPlanRoutes);
