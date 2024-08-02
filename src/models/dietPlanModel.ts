@@ -64,7 +64,14 @@ const DayPlanSchema: Schema = new Schema({
 // Define DietPlan Schema
 const DietPlanSchema: Schema = new Schema({
   userId: { type: String, required: true },
-  week: { type: Number, required: true },
+  week: {
+    type: Number,
+    required: true,
+    validate: {
+      validator: (value: number) => value >= 1 && value <= 52,
+      message: "Week must be a number between 1 and 52",
+    },
+  },
   year: { type: Number, required: true },
   dailyPlans: [DayPlanSchema],
 });
